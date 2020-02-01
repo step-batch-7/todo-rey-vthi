@@ -1,4 +1,4 @@
-create all setUo for to project
+create all setUo for to project --DONE.
   -public
      *js
      *templates
@@ -10,9 +10,9 @@ create all setUo for to project
   -data
   -test
 
--- create server.
-
 --create static web pages.
+
+-- create server.
 
 --add functionality, so that it should be able to create todo.
 

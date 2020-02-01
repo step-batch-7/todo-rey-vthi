@@ -1,0 +1,29 @@
+create all setUo for to project
+  -public
+     *js
+     *templates
+  
+  -lib
+    *server.js
+    *app.js
+    *handler.js
+  -data
+  -test
+
+-- create server.
+
+--create static web pages.
+
+--add functionality, so that it should be able to create todo.
+
+--add function that stores todo to data store.
+
+--add functionality, so that it should have view option.
+
+--add functionality, so todo should be able to delete.
+
+--add functionality, so that it should be able to mark it as done.
+
+
+
+

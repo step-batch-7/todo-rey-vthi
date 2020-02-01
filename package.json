@@ -1,0 +1,25 @@
+{
+  "name": "todo-rey-vthi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-batch-7/todo-rey-vthi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/step-batch-7/todo-rey-vthi/issues"
+  },
+  "homepage": "https://github.com/step-batch-7/todo-rey-vthi#readme"
+}

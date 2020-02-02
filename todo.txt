@@ -10,9 +10,9 @@ create all setUo for to project --DONE.
   -data
   -test
 
---create static web pages.
+--create static web pages. --DONE
 
--- create server.
+-- create server. --DONE
 
 --add functionality, so that it should be able to create todo.
 

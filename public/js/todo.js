@@ -30,9 +30,7 @@ const getTodoContainer = function(content) {
 };
 
 const showAllTodo = function(text) {
-  console.log(text);
   const todoDetails = JSON.parse(text);
-  console.log(todoDetails);
   todoDetails.forEach(todo => {
     const todoContainer = getTodoContainer(todo.title);
     const list = JSON.parse(todo.todoList);

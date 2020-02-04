@@ -2,15 +2,35 @@
   text-align: center;
 }
 
-.title-feeder {
-  width: 500px;
-  height: 25px;
+.size {
+  height: 20px;
+  width: 200px;
 }
 
-.add-button {
-  height: 30px;
+.form {
+  align-items: center;
+  display: none;
 }
 
-.button-wrapper {
-  text-align: center;
+.align-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.list {
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding-left: 10px;
+  margin-bottom: 30px;
+  background: lightgray;
+}
+
+.whole-page {
+  margin: 40px 40px 40px 40px;
+}
+
+.padding {
+  padding-top: 20px;
 }

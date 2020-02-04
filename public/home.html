@@ -5,17 +5,39 @@
     <link rel="stylesheet" href="./css/style.css" type="text/css" />
     <script src="./js/todo.js"></script>
   </head>
-  <body>
+  <body
+    class="whole-page"
+    onload="sendXHR('GET','/serveAllTodo ',formatTodoList)"
+  >
     <h1 class="heading">Todo</h1>
     <hr />
-    <div class="button-wrapper">
-      <input
-        class="title-feeder"
-        type="text"
-        placeholder="Title"
-        onclick="askForTodo()"
-      />
-      <button class="add-button">create</button>
+    <div class="align-center">
+      <button onclick="showTodoBox()" id="create-button">create</button>
     </div>
+    <div class="form" id="todoList">
+      <div class="heading">
+        <input
+          class="size"
+          type="text"
+          id="title"
+          placeholder="Title"
+          required
+        />
+      </div>
+      <div class="heading">
+        <input
+          class="size"
+          type="text"
+          id="item"
+          placeholder="+ listItem"
+          required
+        />
+        <button class="addBtn" onclick="addTodoList()">NEXT</button>
+      </div>
+      <div class="heading">
+        <button id="save" class="addBtn" onclick="saveTodo()">Save</button>
+      </div>
+    </div>
+    <div id="todoListContainer" class="align-center padding"></div>
   </body>
 </html>

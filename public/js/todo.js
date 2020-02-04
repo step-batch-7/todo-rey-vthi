@@ -29,15 +29,43 @@ const getTodoContainer = function(content) {
   return todoContainer;
 };
 
+const createTaskHtml = function(task) {
+  const listContainer = createElement('div');
+  listContainer.className = 'task';
+  listContainer.id = task.id;
+  const todo = createElement('input');
+  todo.type = 'checkbox';
+  todo.onclick = changeTaskStatus;
+  if (task.isDone === true) todo.checked = 'true';
+  listContainer.appendChild(todo);
+  const todoValue = createElement('span');
+  todoValue.innerText = task.todo;
+  listContainer.appendChild(todoValue);
+  return listContainer;
+};
+
+const getIds = function(event) {
+  const todoId = [...event.path].find(parent => parent.className === 'list').id;
+  const taskId = [...event.path].find(parent => parent.className === 'task').id;
+  return {todoId, taskId};
+};
+
+const changeTaskStatus = function() {
+  const {todoId, taskId} = getIds(event);
+  const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
+  removeChild('#todoListContainer');
+  sendXHR('POST', '/changeStatusOfTask', formatTodoList, textTodSend);
+};
+
 const showAllTodo = function(text) {
   const todoDetails = JSON.parse(text);
   todoDetails.forEach(todo => {
     const todoContainer = getTodoContainer(todo.title);
+    todoContainer.id = todo.id;
     const list = JSON.parse(todo.todoList);
     list.forEach(task => {
-      const todo = createElement('p');
-      todo.innerText = task.todo;
-      todoContainer.appendChild(todo);
+      const taskHtml = createTaskHtml(task);
+      todoContainer.appendChild(taskHtml);
     });
     document.getElementById('todoListContainer').appendChild(todoContainer);
   });
@@ -54,10 +82,10 @@ const removeChild = function(selector) {
   }
 };
 
-const sendXHR = function(method, url, callback) {
+const sendXHR = function(method, url, callback, data) {
   const req = new XMLHttpRequest();
   req.open(method, url);
-  req.send();
+  req.send(data);
   req.onload = callback;
 };
 

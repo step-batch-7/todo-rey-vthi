@@ -1,4 +1,4 @@
-let todoList = [];
+const todoList = [];
 
 const showTodoBox = function() {
   document.getElementById('todoList').style.display = 'block';
@@ -30,13 +30,15 @@ const getTodoContainer = function(content) {
 };
 
 const showAllTodo = function(text) {
+  console.log(text);
   const todoDetails = JSON.parse(text);
+  console.log(todoDetails);
   todoDetails.forEach(todo => {
     const todoContainer = getTodoContainer(todo.title);
     const list = JSON.parse(todo.todoList);
     list.forEach(task => {
       const todo = createElement('p');
-      todo.innerText = task;
+      todo.innerText = task.todo;
       todoContainer.appendChild(todo);
     });
     document.getElementById('todoListContainer').appendChild(todoContainer);

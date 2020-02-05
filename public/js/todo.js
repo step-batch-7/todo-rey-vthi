@@ -44,26 +44,20 @@ const getImageElement = function() {
   return image;
 };
 
-const getCheckboxElement = function(isDone) {
-  const todo = createElement('input');
-  todo.type = 'checkbox';
-  todo.onclick = changeTaskStatus;
-  if (isDone === true) todo.checked = 'true';
-  return todo;
-};
-
-const getSpanElement = function(innerText) {
-  const todoValue = createElement('span');
-  todoValue.innerText = innerText;
-};
-
 const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
   listContainer.id = task.id;
+
   listContainer.appendChild(getImageElement());
-  listContainer.appendChild(getCheckboxElement(task.isDone));
-  listContainer.appendChild(getSpanElement(task.todo));
+  const todo = createElement('input');
+  todo.type = 'checkbox';
+  todo.onclick = changeTaskStatus;
+  if (task.isDone === true) todo.checked = 'true';
+  listContainer.appendChild(todo);
+  const todoValue = createElement('span');
+  todoValue.innerText = task.todo;
+  listContainer.appendChild(todoValue);
   return listContainer;
 };
 

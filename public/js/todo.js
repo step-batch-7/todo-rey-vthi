@@ -33,6 +33,11 @@ const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
   listContainer.id = task.id;
+  const image = createElement('img');
+  image.src = '../images/delete.png';
+  image.className = 'deleteIcon';
+  image.onclick = deleteTodo;
+  listContainer.appendChild(image);
   const todo = createElement('input');
   todo.type = 'checkbox';
   todo.onclick = changeTaskStatus;
@@ -42,6 +47,10 @@ const createTaskHtml = function(task) {
   todoValue.innerText = task.todo;
   listContainer.appendChild(todoValue);
   return listContainer;
+};
+
+const deleteTodo = function() {
+  console.log('hello');
 };
 
 const getIds = function(event) {

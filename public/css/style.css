@@ -45,6 +45,11 @@
   border-right: 1px solid black;
 }
 
+.deleteIcon {
+  width: 20px;
+  height: 15px;
+}
+
 .right {
   padding-left: 10px;
   display: flex;

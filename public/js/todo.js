@@ -52,19 +52,27 @@ const getImageElement = function() {
   return image;
 };
 
+const getCheckboxHtml = function(isDone) {
+  let checkbox = '<input type="checkbox" onclick="changeTaskStatus()">';
+  if (isDone) {
+    checkbox = '<input type="checkbox" onclick="changeTaskStatus()" checked>';
+  }
+  return checkbox;
+};
+
+const taskHtml = function(task) {
+  const checkboxHtml = getCheckboxHtml(task.isDone);
+  const html = `
+    <img src="../images/delete.png" class="deleteIcon" onclick="deleteTodo()" />
+    ${checkboxHtml}<span>${task.todo}</span>`;
+  return html;
+};
+
 const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
   listContainer.id = task.id;
-  listContainer.appendChild(getImageElement());
-  const todo = createElement('input');
-  todo.type = 'checkbox';
-  todo.onclick = changeTaskStatus;
-  if (task.isDone === true) todo.checked = 'true';
-  listContainer.appendChild(todo);
-  const todoValue = createElement('span');
-  todoValue.innerText = task.todo;
-  listContainer.appendChild(todoValue);
+  listContainer.innerHTML = taskHtml(task);
   return listContainer;
 };
 

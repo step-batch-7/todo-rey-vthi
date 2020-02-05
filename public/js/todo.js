@@ -52,16 +52,18 @@ const getCheckboxElement = function(isDone) {
   return todo;
 };
 
+const getSpanElement = function(innerText) {
+  const todoValue = createElement('span');
+  todoValue.innerText = innerText;
+};
+
 const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
   listContainer.id = task.id;
-
   listContainer.appendChild(getImageElement());
   listContainer.appendChild(getCheckboxElement(task.isDone));
-  const todoValue = createElement('span');
-  todoValue.innerText = task.todo;
-  listContainer.appendChild(todoValue);
+  listContainer.appendChild(getSpanElement(task.todo));
   return listContainer;
 };
 

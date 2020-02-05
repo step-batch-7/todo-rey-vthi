@@ -44,17 +44,21 @@ const getImageElement = function() {
   return image;
 };
 
+const getCheckboxElement = function(isDone) {
+  const todo = createElement('input');
+  todo.type = 'checkbox';
+  todo.onclick = changeTaskStatus;
+  if (isDone === true) todo.checked = 'true';
+  return todo;
+};
+
 const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
   listContainer.id = task.id;
 
   listContainer.appendChild(getImageElement());
-  const todo = createElement('input');
-  todo.type = 'checkbox';
-  todo.onclick = changeTaskStatus;
-  if (task.isDone === true) todo.checked = 'true';
-  listContainer.appendChild(todo);
+  listContainer.appendChild(getCheckboxElement(task.isDone));
   const todoValue = createElement('span');
   todoValue.innerText = task.todo;
   listContainer.appendChild(todoValue);

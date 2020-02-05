@@ -29,6 +29,13 @@ const getTodoContainer = function(content) {
   return todoContainer;
 };
 
+const deleteTodo = function() {
+  const {todoId, taskId} = getIds(event);
+  const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
+  removeChild('#todoListContainer');
+  sendXHR('POST', '/deleteTask', formatTodoList, textTodSend);
+};
+
 const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
@@ -47,10 +54,6 @@ const createTaskHtml = function(task) {
   todoValue.innerText = task.todo;
   listContainer.appendChild(todoValue);
   return listContainer;
-};
-
-const deleteTodo = function() {
-  console.log('hello');
 };
 
 const getIds = function(event) {

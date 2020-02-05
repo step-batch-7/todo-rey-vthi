@@ -30,7 +30,6 @@ const getTodoContainer = function(content) {
 };
 
 const createTaskHtml = function(task) {
-  console.log(task);
   const listContainer = createElement('div');
   listContainer.className = 'task';
   listContainer.id = task.id;

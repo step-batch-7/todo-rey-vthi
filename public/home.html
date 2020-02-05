@@ -11,33 +11,37 @@
   >
     <h1 class="heading">Todo</h1>
     <hr />
-    <div class="align-center">
-      <button onclick="showTodoBox()" id="create-button">create</button>
+    <div class="nav-and-form">
+      <div class="left">
+        <button onclick="showTodoBox()" id="create-button">create</button>
+        <div class="form" id="todoList">
+          <div>
+            <input
+              class="size"
+              type="text"
+              id="title"
+              placeholder="Title"
+              required
+            />
+          </div>
+          <br />
+          <div>
+            <input
+              class="size"
+              type="text"
+              id="item"
+              placeholder="+ listItem"
+              required
+            />
+            <br />
+            <br />
+            <button class="addBtn" onclick="addTodoList()">NEXT</button>
+            <button id="save" class="addBtn" onclick="saveTodo()">Save</button>
+          </div>
+          <div></div>
+        </div>
+      </div>
+      <div id="todoListContainer" class="right"></div>
     </div>
-    <div class="form" id="todoList">
-      <div class="heading">
-        <input
-          class="size"
-          type="text"
-          id="title"
-          placeholder="Title"
-          required
-        />
-      </div>
-      <div class="heading">
-        <input
-          class="size"
-          type="text"
-          id="item"
-          placeholder="+ listItem"
-          required
-        />
-        <button class="addBtn" onclick="addTodoList()">NEXT</button>
-      </div>
-      <div class="heading">
-        <button id="save" class="addBtn" onclick="saveTodo()">Save</button>
-      </div>
-    </div>
-    <div id="todoListContainer" class="align-center padding"></div>
   </body>
 </html>

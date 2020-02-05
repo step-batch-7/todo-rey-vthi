@@ -1,25 +1,25 @@
-.heading {
-  text-align: center;
-}
-
-.size {
-  height: 20px;
-  width: 200px;
-}
-
 .form {
-  align-items: center;
   display: none;
 }
 
-.align-center {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
 .list-container {
   display: flex;
   flex-direction: row;
+}
+
+#create-button {
+  width: 100px;
+  height: 30px;
+}
+
+.size {
+  width: 200px;
+  height: 25px;
+}
+
+.addBtn {
+  width: 60px;
+  background: rgb(36, 160, 237);
 }
 
 .list {
@@ -36,6 +36,21 @@
   margin: 40px 40px 40px 40px;
 }
 
-.padding {
-  padding-top: 20px;
+.nav-and-form {
+  display: flex;
+}
+
+.left {
+  width: 300px;
+  border-right: 1px solid black;
+}
+
+.right {
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  margin-top: 50px;
 }

@@ -35,7 +35,6 @@ const getTodoContainer = function(content, id) {
 const deleteTodo = function() {
   const {todoId, taskId} = getIds(event);
   const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
-
   sendXHR('POST', '/deleteTask', formatTodoList, textTodSend);
 };
 
@@ -57,7 +56,6 @@ const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
   listContainer.id = task.id;
-
   listContainer.appendChild(getImageElement());
   const todo = createElement('input');
   todo.type = 'checkbox';
@@ -116,8 +114,8 @@ const sendXHR = function(method, url, callback, data) {
   req.onload = callback;
 };
 
-const setUp = function() {
-  todoList = [];
+const reorganizeDisplay = function() {
+  document.getElementById('title').value = '';
   document.getElementById('todoList').style.display = 'none';
   document.getElementById('create-button').style.display = 'block';
 };
@@ -128,8 +126,9 @@ const reloadTodo = function() {
 };
 
 const saveTodo = function() {
+  addTodoList();
   const title = document.getElementById('title').value;
   const requestText = getRequestText(title);
-  setUp();
+  reorganizeDisplay();
   sendXHR('POST', '/saveTodo', reloadTodo, requestText);
 };

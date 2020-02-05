@@ -79,7 +79,7 @@ const showAllTodo = function(text) {
   todoDetails.forEach(todo => {
     const todoContainer = getTodoContainer(todo.title);
     todoContainer.id = todo.id;
-    const list = JSON.parse(todo.todoList);
+    const list = todo.todoList;
     list.forEach(task => {
       const taskHtml = createTaskHtml(task);
       todoContainer.appendChild(taskHtml);

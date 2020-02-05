@@ -36,15 +36,20 @@ const deleteTodo = function() {
   sendXHR('POST', '/deleteTask', formatTodoList, textTodSend);
 };
 
-const createTaskHtml = function(task) {
-  const listContainer = createElement('div');
-  listContainer.className = 'task';
-  listContainer.id = task.id;
+const getImageElement = function() {
   const image = createElement('img');
   image.src = '../images/delete.png';
   image.className = 'deleteIcon';
   image.onclick = deleteTodo;
-  listContainer.appendChild(image);
+  return image;
+};
+
+const createTaskHtml = function(task) {
+  const listContainer = createElement('div');
+  listContainer.className = 'task';
+  listContainer.id = task.id;
+
+  listContainer.appendChild(getImageElement());
   const todo = createElement('input');
   todo.type = 'checkbox';
   todo.onclick = changeTaskStatus;

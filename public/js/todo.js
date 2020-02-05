@@ -29,23 +29,19 @@ const getTodoContainer = function(content, id) {
   class="delete-all-icon" onclick="deleteWholeTodo()"/>
   </div>
   </div><br />`;
-  // const title = createElement('h1');
-  // title.innerText = content;
-  // todoContainer.appendChild(title);
   return todoContainer;
 };
 
 const deleteTodo = function() {
   const {todoId, taskId} = getIds(event);
   const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
-  removeChild('#todoListContainer');
+
   sendXHR('POST', '/deleteTask', formatTodoList, textTodSend);
 };
 
 const deleteWholeTodo = function() {
   const todoId = event.target.id;
   const textTodSend = `todoId=${todoId}`;
-  removeChild('#todoListContainer');
   sendXHR('POST', '/deleteTodo', formatTodoList, textTodSend);
 };
 
@@ -102,6 +98,7 @@ const showAllTodo = function(text) {
 };
 
 const formatTodoList = function() {
+  removeChild('#todoListContainer');
   showAllTodo(this.responseText);
 };
 
@@ -125,15 +122,14 @@ const setUp = function() {
   document.getElementById('create-button').style.display = 'block';
 };
 
+const reloadTodo = function() {
+  removeChild('#todoListContainer');
+  showAllTodo(this.responseText);
+};
+
 const saveTodo = function() {
   const title = document.getElementById('title').value;
   const requestText = getRequestText(title);
   setUp();
-  const req = new XMLHttpRequest();
-  req.open('POST', '/saveTodo');
-  req.send(requestText);
-  req.onload = function() {
-    removeChild('#todoListContainer');
-    showAllTodo(this.responseText);
-  };
+  sendXHR('POST', '/saveTodo', reloadTodo, requestText);
 };

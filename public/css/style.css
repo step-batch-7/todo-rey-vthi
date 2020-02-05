@@ -10,6 +10,7 @@
 #create-button {
   width: 100px;
   height: 30px;
+  padding-right: 2px;
 }
 
 .size {
@@ -41,16 +42,22 @@
 }
 
 .left {
-  width: 300px;
+  width: 25%;
   border-right: 1px solid black;
+}
+
+.delete-all-icon {
+  width: 30px;
+  height: 15px;
 }
 
 .deleteIcon {
   width: 20px;
-  height: 15px;
+  height: 12px;
 }
 
 .right {
+  width: 75%;
   padding-left: 10px;
   display: flex;
   justify-content: space-around;
@@ -58,4 +65,10 @@
   margin-bottom: 50px;
   margin-right: 50px;
   margin-top: 50px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  font-size: large;
 }

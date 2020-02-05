@@ -1,4 +1,4 @@
-const todoList = [];
+let todoList = [];
 
 const showTodoBox = function() {
   document.getElementById('todoList').style.display = 'block';
@@ -20,12 +20,18 @@ const createElement = function(element) {
   return document.createElement(element);
 };
 
-const getTodoContainer = function(content) {
+const getTodoContainer = function(content, id) {
   const todoContainer = createElement('div');
   todoContainer.className = 'list';
-  const header = createElement('h1');
-  header.innerText = content;
-  todoContainer.appendChild(header);
+  todoContainer.innerHTML = `<br /><div class="heading">
+  <div><span>${content}</span></div>
+  <div><img src="../images/trash.png" id="${id}"
+  class="delete-all-icon" onclick="deleteWholeTodo()"/>
+  </div>
+  </div><br />`;
+  // const title = createElement('h1');
+  // title.innerText = content;
+  // todoContainer.appendChild(title);
   return todoContainer;
 };
 
@@ -34,6 +40,13 @@ const deleteTodo = function() {
   const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
   removeChild('#todoListContainer');
   sendXHR('POST', '/deleteTask', formatTodoList, textTodSend);
+};
+
+const deleteWholeTodo = function() {
+  const todoId = event.target.id;
+  const textTodSend = `todoId=${todoId}`;
+  removeChild('#todoListContainer');
+  sendXHR('POST', '/deleteTodo', formatTodoList, textTodSend);
 };
 
 const getImageElement = function() {
@@ -77,7 +90,7 @@ const changeTaskStatus = function() {
 const showAllTodo = function(text) {
   const todoDetails = JSON.parse(text);
   todoDetails.forEach(todo => {
-    const todoContainer = getTodoContainer(todo.title);
+    const todoContainer = getTodoContainer(todo.title, todo.id);
     todoContainer.id = todo.id;
     const list = todo.todoList;
     list.forEach(task => {
@@ -106,9 +119,16 @@ const sendXHR = function(method, url, callback, data) {
   req.onload = callback;
 };
 
+const setUp = function() {
+  todoList = [];
+  document.getElementById('todoList').style.display = 'none';
+  document.getElementById('create-button').style.display = 'block';
+};
+
 const saveTodo = function() {
   const title = document.getElementById('title').value;
   const requestText = getRequestText(title);
+  setUp();
   const req = new XMLHttpRequest();
   req.open('POST', '/saveTodo');
   req.send(requestText);

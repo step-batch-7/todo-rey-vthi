@@ -20,22 +20,47 @@ const createElement = function(element) {
   return document.createElement(element);
 };
 
+const showTodo = function() {
+  const todoId = event.path[3].id;
+  const textTodSend = `todoId=${todoId}`;
+  sendXHR('POST', '/viewTodo', viewTodo, textTodSend);
+};
+
 const getTodoContainer = function(content, id) {
+  const todoContainer = createElement('div');
+  todoContainer.className = 'list';
+  todoContainer.innerHTML = `<div class="heading">
+  <div onclick="showTodo()"><span>${content}</span></div>
+  <div><img src="../images/trash.png" id="${id}"
+  class="delete-all-icon" onclick="deleteWholeTodo()"/>
+  </div>
+  </div>`;
+  return todoContainer;
+};
+
+const getContainer = function(content) {
   const todoContainer = createElement('div');
   todoContainer.className = 'list';
   todoContainer.innerHTML = `<br /><div class="heading">
   <div><span>${content}</span></div>
-  <div><img src="../images/trash.png" id="${id}"
-  class="delete-all-icon" onclick="deleteWholeTodo()"/>
+  <div class="close"><span onclick="closeTodo()">Close&nbsp;&nbsp;</span>
   </div>
   </div><br />`;
   return todoContainer;
 };
 
+const createTaskHtml = function(task) {
+  const listContainer = createElement('div');
+  listContainer.className = 'task';
+  listContainer.id = task.id;
+  listContainer.innerHTML = taskHtml(task);
+  return listContainer;
+};
+
 const deleteTodo = function() {
   const {todoId, taskId} = getIds(event);
   const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
-  sendXHR('POST', '/deleteTask', formatTodoList, textTodSend);
+  sendXHR('POST', '/deleteTask', newTodo, textTodSend);
 };
 
 const deleteWholeTodo = function() {
@@ -68,14 +93,6 @@ const taskHtml = function(task) {
   return html;
 };
 
-const createTaskHtml = function(task) {
-  const listContainer = createElement('div');
-  listContainer.className = 'task';
-  listContainer.id = task.id;
-  listContainer.innerHTML = taskHtml(task);
-  return listContainer;
-};
-
 const getIds = function(event) {
   const todoId = [...event.path].find(parent => parent.className === 'list').id;
   const taskId = [...event.path].find(parent => parent.className === 'task').id;
@@ -91,16 +108,42 @@ const changeTaskStatus = function() {
 
 const showAllTodo = function(text) {
   const todoDetails = JSON.parse(text);
+  const header = createElement('p');
+  header.className = 'todo-list-left';
+  header.innerText = 'TODO LISTS...';
+  document.getElementById('todoListContainer').appendChild(header);
   todoDetails.forEach(todo => {
     const todoContainer = getTodoContainer(todo.title, todo.id);
     todoContainer.id = todo.id;
-    const list = todo.todoList;
-    list.forEach(task => {
-      const taskHtml = createTaskHtml(task);
-      todoContainer.appendChild(taskHtml);
-    });
     document.getElementById('todoListContainer').appendChild(todoContainer);
   });
+};
+
+const showSelectedTodo = function(text) {
+  const todo = JSON.parse(text);
+  removeChild('#todo-viewer');
+  const br = createElement('br');
+  document.getElementById('todo-viewer').appendChild(br);
+  document.getElementById('todo-viewer').appendChild(br);
+  const todoContainer = getContainer(todo.title, todo.id);
+  todoContainer.id = todo.id;
+  todo.todoList.forEach(task => {
+    const taskHtml = createTaskHtml(task);
+    todoContainer.appendChild(taskHtml);
+  });
+  document.getElementById('todo-viewer').appendChild(todoContainer);
+};
+
+const newTodo = function() {
+  showSelectedTodo(this.responseText);
+};
+
+const viewTodo = function() {
+  showSelectedTodo(this.responseText);
+};
+
+const closeTodo = function() {
+  removeChild('#todo-viewer');
 };
 
 const formatTodoList = function() {

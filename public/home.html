@@ -9,11 +9,14 @@
     class="whole-page"
     onload="sendXHR('GET','/serveAllTodo ',formatTodoList)"
   >
-    <h1 class="heading">Todo</h1>
+    <h1 class="todo-heading">Todo</h1>
     <hr />
     <div class="nav-and-form">
-      <div class="left">
-        <button onclick="showTodoBox()" id="create-button">create</button>
+      <div id="todoListContainer" class="left"></div>
+      <div class="right">
+        <button onclick="showTodoBox()" id="create-button" class="button">
+          create new
+        </button>
         <div class="form" id="todoList">
           <div>
             <input
@@ -37,11 +40,11 @@
             <br />
             <button class="addBtn" onclick="addTodoList()">NEXT</button>
             <button id="save" class="addBtn" onclick="saveTodo()">Save</button>
+            <br />
           </div>
-          <div></div>
         </div>
+        <div class="todo-viewer" id="todo-viewer"><p>hiii</p></div>
       </div>
-      <div id="todoListContainer" class="right"></div>
     </div>
   </body>
 </html>

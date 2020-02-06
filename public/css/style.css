@@ -19,22 +19,28 @@
 }
 
 .addBtn {
-  width: 60px;
-  background: rgb(36, 160, 237);
+  color: rgb(240, 111, 111);
+  width: 100px;
+  height: 20px;
+  font-weight: bold;
+  background: rgb(250, 200, 200);
 }
 
 .list {
   width: 300px;
-  height: 200px;
+  text-align: left;
+  font-weight: bold;
+  font-size: larger;
   border: 1px solid black;
-  border-radius: 25px;
+  border-radius: 15px;
   padding-left: 10px;
-  margin-bottom: 30px;
-  background: lightgray;
+  margin-bottom: 10px;
+  background: rgb(250, 200, 200);
 }
 
 .whole-page {
   margin: 40px 40px 40px 40px;
+  background: black;
 }
 
 .nav-and-form {
@@ -42,8 +48,7 @@
 }
 
 .left {
-  width: 25%;
-  border-right: 1px solid black;
+  width: 30%;
 }
 
 .delete-all-icon {
@@ -57,18 +62,38 @@
 }
 
 .right {
-  width: 75%;
-  padding-left: 10px;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
-  margin-right: 50px;
-  margin-top: 50px;
+  width: 70%;
+  margin-top: 10px;
+  margin-left: 250px;
 }
 
 .heading {
   display: flex;
   justify-content: space-between;
   font-size: large;
+}
+
+.todo-heading {
+  text-align: center;
+  color: white;
+}
+
+.task {
+  width: 300px;
+  display: block;
+  font-weight: normal;
+}
+
+.todo-list-left {
+  font-weight: bold;
+  color: rgb(179, 67, 67);
+}
+
+.close {
+  color: red;
+  font-weight: normal;
+}
+
+.button {
+  text-align: center;
 }

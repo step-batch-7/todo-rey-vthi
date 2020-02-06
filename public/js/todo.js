@@ -148,6 +148,7 @@ const closeTodo = function() {
 
 const formatTodoList = function() {
   removeChild('#todoListContainer');
+  console.log(this.responseText, '>>>>');
   showAllTodo(this.responseText);
 };
 

@@ -91,9 +91,11 @@ const getCheckboxHtml = function(isDone) {
 
 const taskHtml = function(task) {
   const checkboxHtml = getCheckboxHtml(task.isDone);
-  const html = `
+  const html = `<div>
     <img src="../images/delete.png" class="deleteIcon" onclick="deleteTodo()" />
-    ${checkboxHtml}<span>${task.task}</span>`;
+    ${checkboxHtml}<span class="task-name" id="${task.id}">${task.task}</span></div>
+    <div><img src="../images/pencil.png" class="pencil" onclick="editTask()"/></div>
+    </div>`;
   return html;
 };
 
@@ -123,6 +125,28 @@ const showAllTodo = function(text) {
     todoContainer.id = todo.id;
     document.getElementById('todoListContainer').appendChild(todoContainer);
   });
+};
+
+const editTask = function() {
+  const {todoId, taskId} = getIds(event);
+  const taskElement = document
+    .getElementById(taskId)
+    .getElementsByClassName('task-name');
+  const innerText = taskElement[0].innerText;
+  taskElement[0].innerHTML = `
+  <input type="text" class="editing-task" value="${innerText}"
+  onkeypress="checkValue()" >`;
+};
+
+const checkValue = function() {
+  if (event.key === 'Enter') updateTask();
+};
+
+const updateTask = function() {
+  const {todoId, taskId} = getIds(event);
+  const editedTask = event.srcElement.value;
+  const requestText = `todoId=${todoId}&taskId=${taskId}&task=${editedTask}`;
+  sendXHR('POST', '/editTask', newTodo, requestText);
 };
 
 const showSelectedTodo = function(text) {

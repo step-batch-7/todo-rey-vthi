@@ -89,7 +89,7 @@ const taskHtml = function(task) {
   const checkboxHtml = getCheckboxHtml(task.isDone);
   const html = `
     <img src="../images/delete.png" class="deleteIcon" onclick="deleteTodo()" />
-    ${checkboxHtml}<span>${task.todo}</span>`;
+    ${checkboxHtml}<span>${task.task}</span>`;
   return html;
 };
 
@@ -148,7 +148,6 @@ const closeTodo = function() {
 
 const formatTodoList = function() {
   removeChild('#todoListContainer');
-  console.log(this.responseText, '>>>>');
   showAllTodo(this.responseText);
 };
 

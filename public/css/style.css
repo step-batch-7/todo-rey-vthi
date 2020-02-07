@@ -1,5 +1,6 @@
 .form {
   display: none;
+  margin: auto;
 }
 
 .list-container {
@@ -16,6 +17,7 @@
 .size {
   width: 200px;
   height: 25px;
+  margin-bottom: 10px;
 }
 
 .addBtn {
@@ -27,13 +29,14 @@
 }
 
 .list {
-  width: 200px;
+  width: 280px;
   text-align: left;
   font-weight: bold;
   font-size: larger;
   border: 1px solid black;
   border-radius: 15px;
   padding-left: 10px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
   background: lightgray;
 }
@@ -56,6 +59,11 @@
   height: 15px;
 }
 
+.add {
+  width: 25px;
+  height: 15px;
+}
+
 .edit {
   width: 25px;
   height: 15px;
@@ -68,8 +76,7 @@
 
 .right {
   width: 70%;
-  margin-top: 10px;
-  margin-left: 250px;
+  margin-left: 270px;
 }
 
 .heading {
@@ -81,6 +88,7 @@
 .todo-heading {
   text-align: center;
   color: black;
+  border-bottom: 1px solid black;
 }
 
 .task {
@@ -99,9 +107,39 @@
   font-weight: normal;
 }
 
-.button {
-  text-align: center;
+.create-button {
+  /* text-align: center; */
+  margin: auto;
 }
 .left {
+  height: 100vh;
   box-shadow: 5px 10px 8px #888888;
+}
+
+.save-next {
+  margin-top: 10px;
+  margin: auto;
+}
+
+.todo-viewer {
+  margin-top: 50px;
+}
+
+.list-view {
+  margin-top: 15px;
+  width: 350px;
+  text-align: left;
+  font-weight: bold;
+  font-size: larger;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  background: lightgray;
+}
+
+.new-task {
+  width: 200px;
+  height: 15px;
+  padding-left: 5px;
 }

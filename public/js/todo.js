@@ -40,14 +40,16 @@ const getTodoContainer = function(content, id) {
   return todoContainer;
 };
 
-const getContainer = function(content) {
+const getContainer = function(content, id) {
   const todoContainer = createElement('div');
-  todoContainer.className = 'list';
-  todoContainer.innerHTML = `<br /><div class="heading">
+  todoContainer.className = 'list view';
+  todoContainer.id = id;
+  todoContainer.innerHTML = `<div class="heading">
   <div><span>${content}</span></div>
-  <div class="close"><span onclick="closeTodo()">Close&nbsp;&nbsp;</span>
+  <div class="close"><img src="../images/add.png" class="add" onclick="addTodo()">
+  <span onclick="closeTodo()">Close&nbsp;&nbsp;</span>
   </div>
-  </div><br />`;
+  </div><br>`;
   return todoContainer;
 };
 
@@ -184,4 +186,33 @@ const saveTodo = function() {
   const requestText = getRequestText(title);
   reorganizeDisplay();
   sendXHR('POST', '/saveTodo', reloadTodo, requestText);
+};
+
+const reloadTask = function() {
+  removeChild('#todo-viewer');
+  showSelectedTodo(this.responseText);
+};
+
+const addTodo = function() {
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.onkeypress = checkInput;
+  input.placeholder = 'add new task';
+  input.className = 'new-task';
+  document.querySelector('.view').appendChild(input);
+};
+
+const addNewTask = function(todoId, newTask) {
+  const requestText = `todoId=${todoId}&task=${newTask}`;
+  sendXHR('POST', '/addTask', reloadTask, requestText);
+};
+
+const checkInput = function() {
+  if (event.key === 'Enter' && event.target.value !== '') {
+    const todoId = event.path[1].id;
+    addNewTask(todoId, event.target.value);
+    const div = document.querySelector('.view');
+    const inputBox = div.querySelectorAll('input');
+    div.removeChild(inputBox[inputBox.length - 1]);
+  }
 };

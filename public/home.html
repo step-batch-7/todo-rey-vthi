@@ -10,13 +10,14 @@
     onload="sendXHR('GET','/serveAllTodo ',formatTodoList)"
   >
     <h1 class="todo-heading">Todo</h1>
-    <hr />
     <div class="nav-and-form">
       <div id="todoListContainer" class="left"></div>
       <div class="right">
-        <button onclick="showTodoBox()" id="create-button" class="button">
-          create new
-        </button>
+        <div class="create-button ">
+          <button onclick="showTodoBox()" id="create-button" class="button">
+            create new
+          </button>
+        </div>
         <div class="form" id="todoList">
           <div>
             <input
@@ -27,7 +28,6 @@
               required
             />
           </div>
-          <br />
           <div>
             <input
               class="size"
@@ -36,11 +36,12 @@
               placeholder="+ listItem"
               required
             />
-            <br />
-            <br />
-            <button class="addBtn" onclick="addTodoList()">NEXT</button>
-            <button id="save" class="addBtn" onclick="saveTodo()">Save</button>
-            <br />
+            <div class="save-next">
+              <button class="addBtn" onclick="addTodoList()">NEXT</button>
+              <button id="save" class="addBtn" onclick="saveTodo()">
+                Save
+              </button>
+            </div>
           </div>
         </div>
         <div class="todo-viewer" id="todo-viewer"></div>

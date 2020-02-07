@@ -98,7 +98,9 @@ const taskHtml = function(task) {
 };
 
 const getIds = function(event) {
-  const todoId = [...event.path].find(parent => parent.className === 'list').id;
+  const todoId = [...event.path].find(parent =>
+    parent.classList.contains('list')
+  ).id;
   const taskId = [...event.path].find(parent => parent.className === 'task').id;
   return {todoId, taskId};
 };

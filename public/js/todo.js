@@ -1,4 +1,4 @@
-let todoList = [];
+const todoList = [];
 
 const showTodoBox = function() {
   document.getElementById('todoList').style.display = 'block';
@@ -31,7 +31,9 @@ const getTodoContainer = function(content, id) {
   todoContainer.className = 'list';
   todoContainer.innerHTML = `<div class="heading">
   <div onclick="showTodo()"><span>${content}</span></div>
-  <div><img src="../images/trash.png" id="${id}"
+  <div><img src="../images/edit.png" id="${id}"
+  class="edit" onclick="editTodo()"/>
+  <img src="../images/trash.png" id="${id}"
   class="delete-all-icon" onclick="deleteWholeTodo()"/>
   </div>
   </div>`;

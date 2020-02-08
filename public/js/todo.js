@@ -41,19 +41,6 @@ const getTodoContainer = function(content, id) {
   return todoContainer;
 };
 
-const getContainer = function(content, id) {
-  const todoContainer = createElement('div');
-  todoContainer.className = 'list view';
-  todoContainer.id = id;
-  todoContainer.innerHTML = `<div class="heading">
-  <div><span>${content}</span></div>
-  <div class="close"><img src="../images/add.png" class="add" onclick="addTodo()">
-  <span onclick="closeTodo()">Close&nbsp;&nbsp;</span>
-  </div>
-  </div><br>`;
-  return todoContainer;
-};
-
 const createTaskHtml = function(task) {
   const listContainer = createElement('div');
   listContainer.className = 'task';
@@ -133,8 +120,7 @@ const checkValue = function() {
 };
 
 const showSelectedTodo = function(text) {
-  const todo = JSON.parse(text);
-  removeChild('#todo-viewer');
+  const todo = text;
   const br = createElement('br');
   document.getElementById('todo-viewer').appendChild(br);
   document.getElementById('todo-viewer').appendChild(br);
@@ -148,11 +134,13 @@ const showSelectedTodo = function(text) {
 };
 
 const newTodo = function() {
-  showSelectedTodo(this.responseText);
+  removeChild('#todo-viewer');
+  showSelectedTodo(JSON.parse(this.responseText));
 };
 
 const viewTodo = function() {
-  showSelectedTodo(this.responseText);
+  removeChild('#todo-viewer');
+  showSelectedTodo(JSON.parse(this.responseText));
 };
 
 const closeTodo = function() {
@@ -236,7 +224,7 @@ const saveTodo = function() {
 
 const reloadTask = function() {
   removeChild('#todo-viewer');
-  showSelectedTodo(this.responseText);
+  showSelectedTodo(JSON.parse(this.responseText));
 };
 
 const addTodo = function() {
@@ -261,4 +249,32 @@ const checkInput = function() {
     const inputBox = div.querySelectorAll('input');
     div.removeChild(inputBox[inputBox.length - 1]);
   }
+};
+
+const showAllMatchingTodo = function() {
+  removeChild('#todo-viewer');
+  viewMatchingTodo(this.responseText);
+};
+
+const viewMatchingTodo = function(todo) {
+  const allTodo = JSON.parse(todo);
+  allTodo.forEach(todo => showSelectedTodo(todo));
+};
+
+const getContainer = function(content, id) {
+  const todoContainer = createElement('div');
+  todoContainer.className = 'list view';
+  todoContainer.id = id;
+  todoContainer.innerHTML = `<div class="heading">
+  <div><span>${content}</span></div>
+  <div class="close"><img src="../images/add.png" class="add" onclick="addTodo()">
+  <span onclick="closeTodo()">Close&nbsp;&nbsp;</span>
+  </div>
+  </div>`;
+  return todoContainer;
+};
+
+const searchTodo = function() {
+  const requestText = `title=${event.srcElement.value}`;
+  sendXHR('POST', '/searchTodo', showAllMatchingTodo, requestText);
 };

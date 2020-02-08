@@ -11,7 +11,8 @@
 #create-button {
   width: 100px;
   height: 30px;
-  padding-right: 2px;
+  margin-top: 5px;
+  /* padding-right: 2px; */
 }
 
 .size {
@@ -51,21 +52,21 @@
 }
 
 .left {
-  width: 30%;
+  width: 35%;
 }
 
 .delete-all-icon {
-  width: 25px;
+  width: 20px;
   height: 15px;
 }
 
 .add {
-  width: 25px;
+  width: 20px;
   height: 15px;
 }
 
 .edit {
-  width: 25px;
+  width: 20px;
   height: 15px;
 }
 
@@ -131,7 +132,7 @@
   font-weight: bold;
   font-size: larger;
   border: 1px solid black;
-  border-radius: 15px;
+  border-radius: 5px;
   padding-left: 10px;
   margin-bottom: 10px;
   background: lightgray;
@@ -152,4 +153,37 @@
   width: 20px;
   height: 12px;
   padding-right: 20px;
+}
+
+.view {
+  width: 300px;
+  overflow-x: scroll;
+}
+
+.title-view {
+  border-bottom: 1px solid black;
+}
+
+.searchBox {
+  width: 200px;
+  height: 20px;
+  outline: none;
+}
+
+.search-div {
+  display: flex;
+  justify-content: flex-end;
+}
+.todo-title {
+  color: #888888;
+}
+.todo-title:hover {
+  color: rgb(75, 73, 73);
+  text-decoration: underline;
+}
+
+.search-pic {
+  width: 20px;
+  height: 20px;
+  padding-top: 3px;
 }

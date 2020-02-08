@@ -1,2 +1,3 @@
 node_modules/
 data/todoLogs.json
+.nyc_output/

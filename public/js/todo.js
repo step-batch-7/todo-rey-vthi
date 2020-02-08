@@ -30,7 +30,8 @@ const getTodoContainer = function(content, id) {
   const todoContainer = createElement('div');
   todoContainer.className = 'list';
   todoContainer.innerHTML = `<div class="heading">
-  <div onclick="showTodo()"><span>${content}</span></div>
+  <div onclick="showTodo()"><span class="todo-title" id="${id}">
+  ${content}</span></div>
   <div><img src="../images/edit.png" id="${id}"
   class="edit" onclick="editTodo()"/>
   <img src="../images/trash.png" id="${id}"
@@ -127,26 +128,8 @@ const showAllTodo = function(text) {
   });
 };
 
-const editTask = function() {
-  const {todoId, taskId} = getIds(event);
-  const taskElement = document
-    .getElementById(taskId)
-    .getElementsByClassName('task-name');
-  const innerText = taskElement[0].innerText;
-  taskElement[0].innerHTML = `
-  <input type="text" class="editing-task" value="${innerText}"
-  onkeypress="checkValue()" >`;
-};
-
 const checkValue = function() {
   if (event.key === 'Enter') updateTask();
-};
-
-const updateTask = function() {
-  const {todoId, taskId} = getIds(event);
-  const editedTask = event.srcElement.value;
-  const requestText = `todoId=${todoId}&taskId=${taskId}&task=${editedTask}`;
-  sendXHR('POST', '/editTask', newTodo, requestText);
 };
 
 const showSelectedTodo = function(text) {
@@ -179,6 +162,43 @@ const closeTodo = function() {
 const formatTodoList = function() {
   removeChild('#todoListContainer');
   showAllTodo(this.responseText);
+};
+
+const editTask = function() {
+  const {taskId} = getIds(event);
+  const taskElement = document
+    .getElementById(taskId)
+    .getElementsByClassName('task-name');
+  const innerText = taskElement[0].innerText;
+  taskElement[0].innerHTML = `
+  <input type="text" class="editing-task" value="${innerText}"
+  onkeypress="checkValue()" >`;
+};
+
+const editTodo = function() {
+  const todoId = event.target.id;
+  const todoElement = document
+    .getElementById(todoId)
+    .getElementsByClassName('todo-title');
+  const innerText = todoElement[0].innerHTML.trim();
+  todoElement[0].innerHTML = `<input type="text" value="${innerText}"
+   autofocus="autofocus" onkeypress="checkTitleValue()">`;
+};
+
+const checkTitleValue = function() {
+  if (event.key === 'Enter') {
+    const todoId = event.path[1].id;
+    const editedTodo = event.srcElement.value;
+    const requestText = `todoId=${todoId}&title=${editedTodo}`;
+    sendXHR('POST', '/updateTodo', reloadTodo, requestText);
+  }
+};
+
+const updateTask = function() {
+  const {todoId, taskId} = getIds(event);
+  const editedTask = event.srcElement.value;
+  const requestText = `todoId=${todoId}&taskId=${taskId}&task=${editedTask}`;
+  sendXHR('POST', '/editTask', newTodo, requestText);
 };
 
 const removeChild = function(selector) {

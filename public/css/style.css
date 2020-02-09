@@ -12,7 +12,6 @@
   width: 100px;
   height: 30px;
   margin-top: 5px;
-  /* padding-right: 2px; */
 }
 
 .size {
@@ -111,6 +110,7 @@
 .create-button {
   margin: auto;
 }
+
 .left {
   height: 100vh;
   box-shadow: 5px 10px 8px #888888;
@@ -174,9 +174,11 @@
   display: flex;
   justify-content: flex-end;
 }
+
 .todo-title {
   color: #888888;
 }
+
 .todo-title:hover {
   color: rgb(75, 73, 73);
   text-decoration: underline;
@@ -186,4 +188,25 @@
   width: 20px;
   height: 20px;
   padding-top: 3px;
+}
+
+.left-toggler {
+  width: 30px;
+  border-radius: 25%;
+}
+
+.right-toggler {
+  width: 30px;
+  border-radius: 25%;
+}
+
+.toggler {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  border-radius: 25%;
+}
+
+.hide {
+  background: black;
 }

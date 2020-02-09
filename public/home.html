@@ -18,9 +18,15 @@
             type="text"
             class="searchBox"
             placeholder="searchTodo"
-            onkeyup="searchTodo()"
+            onkeyup="search()"
           />
           <img src="./images/search.png" class="search-pic" />
+          <div class="toggler" onclick="toggleOption()">
+            <div class="left-toggler hide" id="left"><span>todo</span></div>
+            <div class="right-toggler" id="right">
+              <span>task</span>
+            </div>
+          </div>
         </div>
         <div class="create-button ">
           <button onclick="showTodoBox()" id="create-button" class="button">

@@ -1,4 +1,5 @@
 const todoList = [];
+let searchOption = 'task';
 
 const showTodoBox = function() {
   document.getElementById('todoList').style.display = 'block';
@@ -274,7 +275,18 @@ const getContainer = function(content, id) {
   return todoContainer;
 };
 
-const searchTodo = function() {
-  const requestText = `title=${event.srcElement.value}`;
-  sendXHR('POST', '/searchTodo', showAllMatchingTodo, requestText);
+const search = function() {
+  if (searchOption === 'todo') {
+    const requestText = `title=${event.srcElement.value}`;
+    sendXHR('POST', '/searchTodo', showAllMatchingTodo, requestText);
+    return;
+  }
+  const requestText = `task=${event.srcElement.value}`;
+  sendXHR('POST', '/searchTask', showAllMatchingTodo, requestText);
+};
+
+const toggleOption = function() {
+  const todoOption = document.getElementById('right').classList.toggle('hide');
+  document.getElementById('left').classList.toggle('hide');
+  todoOption ? (searchOption = 'todo') : (searchOption = 'task');
 };

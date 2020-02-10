@@ -21,11 +21,9 @@
 }
 
 .addBtn {
-  color: rgb(240, 111, 111);
   width: 100px;
-  height: 20px;
+  height: 30px;
   font-weight: bold;
-  background: rgb(250, 200, 200);
 }
 
 .list {
@@ -33,12 +31,11 @@
   text-align: left;
   font-weight: bold;
   font-size: larger;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   border-radius: 15px;
   padding-left: 10px;
   padding-bottom: 10px;
   margin-bottom: 10px;
-  background: lightgray;
 }
 
 .whole-page {
@@ -83,6 +80,10 @@
   display: flex;
   justify-content: space-between;
   font-size: large;
+}
+
+.list:hover {
+  box-shadow: 5px 10px #888888;
 }
 
 .todo-heading {
@@ -135,7 +136,6 @@
   border-radius: 5px;
   padding-left: 10px;
   margin-bottom: 10px;
-  background: lightgray;
 }
 
 .new-task {

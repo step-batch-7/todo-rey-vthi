@@ -288,5 +288,7 @@ const search = function() {
 const toggleOption = function() {
   const todoOption = document.getElementById('right').classList.toggle('hide');
   document.getElementById('left').classList.toggle('hide');
-  todoOption ? (searchOption = 'todo') : (searchOption = 'task');
+  searchOption = todoOption ? 'todo' : 'task';
+  const searchBox = document.getElementById('searchBox');
+  searchBox.placeholder = `search ${searchOption}`;
 };

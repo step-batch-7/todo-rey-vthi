@@ -191,21 +191,22 @@
 
 .left-toggler {
   width: 30px;
-  border-radius: 25%;
+  border-radius: 50%;
 }
 
 .right-toggler {
   width: 30px;
-  border-radius: 25%;
+  border-radius: 50%;
 }
 
 .toggler {
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
-  border-radius: 25%;
+  border: 2px solid darkgrey;
+  border-radius: 45%;
+  color: darkgrey;
 }
 
 .hide {
-  background: black;
+  background: darkgrey;
 }

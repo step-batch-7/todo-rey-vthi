@@ -291,4 +291,12 @@ const toggleOption = function() {
   searchOption = todoOption ? 'todo' : 'task';
   const searchBox = document.getElementById('searchBox');
   searchBox.placeholder = `search ${searchOption}`;
+  const hidden = document.getElementsByClassName('hide')[0];
+  hidden.style.color = 'darkgrey';
+  if (hidden.id === 'right') changeTextColorToBlack('left');
+  else changeTextColorToBlack('right'); 
+};
+
+const changeTextColorToBlack = function(id) {
+  document.getElementById(id).style.color = 'black';
 };

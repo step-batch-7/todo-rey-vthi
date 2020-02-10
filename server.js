@@ -1,6 +1,6 @@
 const http = require('http');
 const {stdout, stderr} = process;
-const {app} = require('./lib/handlers.js');
+const {app} = require('./lib/router.js');
 const DEFAULT_PORT = 8000;
 
 const main = function(port = DEFAULT_PORT) {

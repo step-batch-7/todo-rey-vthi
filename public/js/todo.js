@@ -27,7 +27,7 @@ const showTodo = function() {
   sendXHR('POST', '/viewTodo', viewTodo, textTodSend);
 };
 
-const getTodoContainer = function(content, id) {
+const getMainTodoContainer = function(content, id) {
   const todoContainer = createElement('div');
   todoContainer.className = 'list';
   todoContainer.innerHTML = `<div class="heading">
@@ -110,7 +110,7 @@ const showAllTodo = function(text) {
   header.innerText = 'TODO LISTS...';
   document.getElementById('todoListContainer').appendChild(header);
   todoDetails.forEach(todo => {
-    const todoContainer = getTodoContainer(todo.title, todo.id);
+    const todoContainer = getMainTodoContainer(todo.title, todo.id);
     todoContainer.id = todo.id;
     document.getElementById('todoListContainer').appendChild(todoContainer);
   });
@@ -125,7 +125,7 @@ const showSelectedTodo = function(text) {
   const br = createElement('br');
   document.getElementById('todo-viewer').appendChild(br);
   document.getElementById('todo-viewer').appendChild(br);
-  const todoContainer = getContainer(todo.title, todo.id);
+  const todoContainer = getTodoForView(todo.title, todo.id);
   todoContainer.id = todo.id;
   todo.todoList.forEach(task => {
     const taskHtml = createTaskHtml(task);
@@ -262,7 +262,7 @@ const viewMatchingTodo = function(todo) {
   allTodo.forEach(todo => showSelectedTodo(todo));
 };
 
-const getContainer = function(content, id) {
+const getTodoForView = function(content, id) {
   const todoContainer = createElement('div');
   todoContainer.className = 'list view';
   todoContainer.id = id;
